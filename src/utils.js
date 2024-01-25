@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url';
 import multer from 'multer';
 import bcrypt from 'bcrypt';
 import JWT from 'jsonwebtoken';
+import config from './config/config.js'
 
 
 //dirname
@@ -10,7 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
 export const __dirname = path.dirname(__filename);
 
 //password
-export const JWT_SECRET = 'qBvPkU2X;J1,51Z!~2p[JW.DT|g:4l@';
+export const JWT_SECRET = config.jwtSecret
 export const createHash = (password) =>{
     return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 }

@@ -1,20 +1,26 @@
+import dotenv from 'dotenv';
+import {Command} from 'commander';
 
-import dotenv from 'dotenv'
+const program = new Command();
 
-let pathEnvFile = null
+program
+  .option('--mode <mode>', 'mode environment', 'dev');
 
-if (process.env.ENV === 'production') {
-  pathEnvFile= './.env/prod'
-}else{
-  pathEnvFile= './.env/dev'
+program.parse();
+
+let pathEnvFile = null;
+if (program.opts().mode !== 'prod') {
+  pathEnvFile = './.env.dev';
+} else {
+  pathEnvFile = './.env.prod';
 }
-
-dotenv.config({path: pathEnvFile})
-
-
+dotenv.config({ path: pathEnvFile });
 
 export default {
-    port: process.env.PORT || 8080,
-    mongodbUri: process.env.MONGODB_URI || 'mongodb://localhost:27017/marketplace',
-  };
-
+  port: process.env.PORT,
+  env: process.env.ENV,
+  MONGODB_URI: process.env.MONGODB,
+  jwtSecret: process.env.JWT_SECRET,
+  cookeSecret: process.env.COOKE_SECRET,
+  sessionSecret: process.env.SESSION_SECRET,
+}

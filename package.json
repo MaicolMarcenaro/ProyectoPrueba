@@ -5,8 +5,8 @@
   "main": "src/server.js",
   "type": "module",
   "scripts": {
-    "start": "ENV=production node .",
-    "dev": "ENV=development nodemon ."
+    "start": "node . --mode production",
+    "dev": "nodemon . --mode development"
   },
   "keywords": [],
   "author": "",
