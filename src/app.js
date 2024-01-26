@@ -7,6 +7,9 @@ import cors from 'cors'
 import { __dirname, Exception } from './utils.js';
 import {init as initPassport} from './config/passport.config.js'
 
+import UserRouter from './routers/api/user.router.js'
+import ProductsRouter from './routers/api/products.router.js'
+
 //importar routers
 
 const app = express()
@@ -29,7 +32,7 @@ app.use(express.static(path.join(__dirname,'../public')));
 
 
 // app.use('/', );
-// app.use('/api', );
+app.use('/api', UserRouter, ProductsRouter);
 
 
 app.get('/', (req, res)=>{
