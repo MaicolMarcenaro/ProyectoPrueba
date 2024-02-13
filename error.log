@@ -1,0 +1,4 @@
+[37mdebug[39m: Error debug: GET en /api/products - 6:17:44 ☺
+[32mhttp[39m: Error http: GET en /api/products - 6:17:44 ☺
+[36minfo[39m: Error info: GET en /api/products - 6:17:44 ☺
+[34mwarning[39m: Error warning: GET en /api/products - 6:17:44 ☺

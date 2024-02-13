@@ -1,5 +1,5 @@
 import UserService from '../dao/user.mongodb.dao.js';
-import { tokenGenerator, UnauthorizedException, isValidPassword } from '../utils.js';
+import { tokenGenerator, UnauthorizedException, isValidPassword } from '../utils/utils.js';
 
 export default class AuthController {
   static async login(email, password) {

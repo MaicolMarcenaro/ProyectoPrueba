@@ -1,12 +1,28 @@
 import {Router} from 'express';
 import ProductsController from '../../controllers/products.controller.js';
+import { generarProduct } from '../../utils/utils.js';
+import { faker } from '@faker-js/faker';
 
 const router = Router()
 
 router.get('/products', async(req, res, next)=>{
     try {
+        req.logger.error('Obteniendo los usuarios... ⏱️');
         const products = await ProductsController.findAll()
+        req.logger.fatal('Se obtuvieron los usuarios correctamente ✅');
         res.status(200).json(products)
+    } catch (error) {
+        next(error)
+    }
+})
+router.get('/productsFaker', async(req, res, next)=>{
+    let products = [];
+    try {
+        const limit = faker.number.int({ min: 2, max: 8 });
+        for (let index = 0; index < limit; index++) {
+            products.push(generarProduct());
+        }
+        res.status(200).json(products);
     } catch (error) {
         next(error)
     }

@@ -2,7 +2,7 @@ import passport from 'passport';
 import { Strategy as JWTStrategy, ExtractJwt } from 'passport-jwt';
 
 import UserService from '../dao/user.mongodb.dao.js'
-import { JWT_SECRET } from '../utils.js';
+import { JWT_SECRET } from '../utils/utils.js';
 
 function cookieExtractor(req) {
 let token = null;

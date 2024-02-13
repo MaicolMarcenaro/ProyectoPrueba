@@ -1,6 +1,6 @@
 import UserService from '../services/user.service.js';
 
-import { NotFoundException } from '../utils.js';
+import { NotFoundException } from '../utils/utils.js';
 
 export default class UsersController {
   static getAll = (query={}) => {

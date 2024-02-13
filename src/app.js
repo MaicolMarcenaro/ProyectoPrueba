@@ -3,8 +3,10 @@ import path from 'path';
 import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import cors from 'cors'
+import ErrorHanddler from './middlewares/ErrorHanddler.js';
+import { addLogger } from './config/logger.js';
 
-import { __dirname, Exception } from './utils.js';
+import { __dirname, Exception } from './utils/utils.js';
 import {init as initPassport} from './config/passport.config.js'
 
 import UserRouter from './routers/api/user.router.js'
@@ -22,6 +24,7 @@ const corsOptions = {
     methods: ['GET','POST','PUT'],
   };
 
+app.use(addLogger)
 app.use(cors(corsOptions));
 app.use(cookieParser())
 app.use(express.json());
@@ -39,14 +42,15 @@ app.get('/', (req, res)=>{
     res.send('Inicio de app')
 });
 
-app.use((error, req, res, next) => {
-    if (error instanceof Exception) {
-      res.status(error.status).json({ status: 'error', message: error.message });
-    } else {
-      const message = `Ah ocurrido un error desconocido : ${error.message}`;
-      console.log(message);
-      res.status(500).json({ status: 'error', message });
-    }
-  });
+app.use(ErrorHanddler)
+// app.use((error, req, res, next) => {
+//     if (error instanceof Exception) {
+//       res.status(error.status).json({ status: 'error', message: error.message });
+//     } else {
+//       const message = `Ah ocurrido un error desconocido : ${error.message}`;
+//       console.log(message);
+//       res.status(500).json({ status: 'error', message });
+//     }
+//   });
 
 export default app;

@@ -3,8 +3,8 @@ import { fileURLToPath } from 'url';
 import multer from 'multer';
 import bcrypt from 'bcrypt';
 import JWT from 'jsonwebtoken';
-import config from './config/config.js'
-
+import config from '../config/config.js'
+import {faker} from'@faker-js/faker'
 
 //dirname
 const __filename = fileURLToPath(import.meta.url);
@@ -87,6 +87,22 @@ export class Exception extends Error {
   export class ForbiddenException extends Exception {
     constructor(message) {
       super(message, 403);
+    }
+  }
+
+  //Generar productos con faker.js
+
+  export const generarProduct = ()=>{
+    return {
+    id: faker.database.mongodbObjectId(),
+    title: faker.commerce.productName(),
+    category: faker.commerce.productAdjective(),
+    description: faker.commerce.productDescription(),
+    price: faker.commerce.price(),
+    thumbnails: faker.datatype.boolean({}),
+    status: faker.datatype.boolean({}),
+    code: faker.number.int({min: 10000, max: 99999}),
+    stock: faker.number.int({min: 10000, max: 99999}),
     }
   }
 
