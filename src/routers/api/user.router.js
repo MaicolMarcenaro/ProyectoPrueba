@@ -2,6 +2,7 @@ import { Router } from 'express';
 import passport from 'passport';
 
 import UsersController from '../../controllers/user.controller.js';
+// import { log } from 'winston';
 
 const router = Router();
 
@@ -24,7 +25,7 @@ router.get('/user/:uid', passport.authenticate('jwt', { session: false }), async
   }
 });
 
-router.post('/user', passport.authenticate('jwt', { session: false }), async (req, res, next) => {
+router.post('/user',  async (req, res, next) => {
     try {
       const { body } = req;
       const user = await UsersController.create(body);

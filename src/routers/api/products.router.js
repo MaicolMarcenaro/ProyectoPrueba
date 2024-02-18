@@ -7,9 +7,7 @@ const router = Router()
 
 router.get('/products', async(req, res, next)=>{
     try {
-        req.logger.error('Obteniendo los usuarios... ⏱️');
         const products = await ProductsController.findAll()
-        req.logger.fatal('Se obtuvieron los usuarios correctamente ✅');
         res.status(200).json(products)
     } catch (error) {
         next(error)

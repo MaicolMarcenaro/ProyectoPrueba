@@ -24,4 +24,10 @@ export default {
   cookeSecret: process.env.COOKE_SECRET,
   sessionSecret: process.env.SESSION_SECRET,
   persistence: process.env.PERSISTENCE || 'MongoDB',
+  mail: {
+    service: process.env.EMAIL_SERVICE || "gmail",
+    port: process.env.EMAIL_PORT || 587,
+    user: process.env.EMAIL_USER,
+    password: process.env.EMAIL_PASSWORD,
+  }
 }

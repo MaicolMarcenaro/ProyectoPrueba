@@ -4,13 +4,14 @@ import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import cors from 'cors'
 import ErrorHanddler from './middlewares/ErrorHanddler.js';
-import { addLogger } from './config/logger.js';
+// import { addLogger } from './config/logger.js';
 
 import { __dirname, Exception } from './utils/utils.js';
 import {init as initPassport} from './config/passport.config.js'
 
 import UserRouter from './routers/api/user.router.js'
 import ProductsRouter from './routers/api/products.router.js'
+import LoginRouter from './routers/api/auth.router.js'
 
 //importar routers
 
@@ -24,7 +25,7 @@ const corsOptions = {
     methods: ['GET','POST','PUT'],
   };
 
-app.use(addLogger)
+// app.use(addLogger)
 app.use(cors(corsOptions));
 app.use(cookieParser())
 app.use(express.json());
@@ -35,7 +36,7 @@ app.use(express.static(path.join(__dirname,'../public')));
 
 
 // app.use('/', );
-app.use('/api', UserRouter, ProductsRouter);
+app.use('/api',LoginRouter, UserRouter, ProductsRouter);
 
 
 app.get('/', (req, res)=>{

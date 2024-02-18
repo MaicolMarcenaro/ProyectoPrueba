@@ -1,3 +1,4 @@
+// import EmailService from '../services/email.service.js';
 import UserService from '../services/user.service.js';
 
 import { NotFoundException } from '../utils/utils.js';
@@ -15,8 +16,12 @@ export default class UsersController {
     return user;
   };
 
-  static create = (data) => {
-    return UserService.create(data);
+  static create = async (data) => {
+    //Logica paqra crear usuario, campos completos, etc
+    const user = await UserService.create(data);
+    // const emailService = EmailService.getInstance()
+    // await emailService.SendWelcomeEmail(user)
+    return user
   };
 
   

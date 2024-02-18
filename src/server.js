@@ -2,11 +2,11 @@ import http from 'http';
 
 import config from './config/config.js';
 import app from './app.js';
-import { init as initMongoDB } from './db/mongodb.js';
+import Mongodb from './db/mongodb.js';
 import { log } from 'console';
 
 
-await initMongoDB();
+await Mongodb.getIntance();
 
 const server = http.createServer(app);
 const PORT = config.port

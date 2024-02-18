@@ -4,16 +4,16 @@ export default class UserDao {
   getAll = (criteria = {}) => {
     return UserModel.find(criteria);
   }
-  static getById = (uid) => {
+  getById = (uid) => {
     return UserModel.findById(uid);
   }
-  static create = (data) => {
+  create = (data) => {
     return UserModel.create(data);
   }
-  static updateById = (uid, data) => {
+  updateById = (uid, data) => {
     return UserModel.updateOne({ _id: uid }, { $set: data });
   }
-  static deleteById = (uid) => {
+  deleteById = (uid) => {
     return UserModel.deleteOne({ _id: uid });
   }
 }

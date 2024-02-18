@@ -21,8 +21,8 @@ export default class UserRepository{
             provider : data.provider,
             cart : data.cart,
         };
-        const newProduct = await this.dao.create(newData);
-        return new UserDTO(newProduct);
+        const newUser = await this.dao.create(newData);
+        return new UserDTO(newUser);
       }
     
       updateById(id, data) {
