@@ -4,6 +4,8 @@ import { Strategy as JWTStrategy, ExtractJwt } from 'passport-jwt';
 import UserService from '../dao/user.mongodb.dao.js'
 import { JWT_SECRET } from '../utils/utils.js';
 
+const userDao= new UserService()
+
 function cookieExtractor(req) {
 let token = null;
 if (req && req.cookies) {
@@ -17,7 +19,7 @@ passport.use('jwt', new JWTStrategy({
     jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]),
     secretOrKey: JWT_SECRET,
 }, async (payload, done) => {
-    const user = await UserService.getById(payload.id);
+    const user = await userDao.getById(payload.id);
     done(null, user);
 }));
 };
